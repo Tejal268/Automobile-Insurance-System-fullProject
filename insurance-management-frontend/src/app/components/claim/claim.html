@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <div class="card shadow-sm rounded-4 mb-5">
+    <div class="card-body">
+      <h3 class="mb-4 text-primary fw-bold">File a Claim</h3>
+
+      <form [formGroup]="claimForm" (ngSubmit)="fileClaim()" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="reason" class="form-label">Reason</label>
+          <textarea formControlName="reason" class="form-control" rows="3" placeholder="Describe the reason"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Upload Proof Document</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" />
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+        <div class="d-grid">
+          <button class="btn btn-success" type="submit" [disabled]="claimForm.invalid || !proofFile">
+            Submit Claim
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card shadow-sm rounded-4">
+    <div class="card-body">
+      <h3 class="mb-4 text-primary fw-bold">My Claims</h3>
+
+      <div class="table-responsive">
+        <table class="table table-striped align-middle table-hover border rounded">
+          <thead class="table-primary text-center">
+            <tr>
+              <th>ID</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Proof Document</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let claim of userClaims" class="text-center">
+              <td>{{ claim.id }}</td>
+              <td class="text-start">{{ claim.reason }}</td>
+              <td>
+                <span [ngClass]="{
+                  'badge bg-warning text-dark': claim.status === 'PENDING',
+                  'badge bg-success': claim.status === 'APPROVED',
+                  'badge bg-danger': claim.status === 'REJECTED'
+                }">
+                  {{ claim.status }}
+                </span>
+              </td>
+              <td>{{ claim.claimDate }}</td>
+              <td>
+                <a *ngIf="claim.proofDocumentPath" 
+                   [href]="'http://localhost:9999/api/claims/download/' + claim.id" 
+                   target="_blank" 
+                   class="btn btn-outline-primary btn-sm">
+                  ⬇️ Download
+                </a>
+                <span *ngIf="!claim.proofDocumentPath" class="text-muted">No document</span>
+              </td>
+            </tr>
+
+            <tr *ngIf="userClaims.length === 0">
+              <td colspan="5" class="text-center text-muted">No claims found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

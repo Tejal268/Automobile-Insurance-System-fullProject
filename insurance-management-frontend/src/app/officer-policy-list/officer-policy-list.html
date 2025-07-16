@@ -1,0 +1,38 @@
+<h2 class="mb-4 text-center">All Policies</h2>
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Policy Number</th>
+          <th>Issued Date</th>
+          <th>Payment ID</th>
+          <th>Expiry Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let policy of policies; let i = index">
+          <td>
+            {{ policy.policyNumber || (i + 1) }}
+          </td>
+          <td>{{ policy.issuedDate }}</td>
+          <td>{{ policy.payment.id }}</td>
+          <td>{{ policy.payment?.quote?.expiryDate }}</td>
+          <td>
+            <span class="badge bg-success">Active</span>
+          </td>
+          <td>
+            <button (click)="downloadPdf(policy.id)" class="btn btn-sm btn-primary">Download PDF</button>
+          </td>
+        </tr>
+
+        <tr *ngIf="policies.length === 0">
+          <td colspan="6" class="text-center py-3">No policies found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

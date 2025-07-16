@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <h3 class="mb-4">Manage Claims</h3>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Proof Document</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let claim of claims">
+        <td>{{ claim.id }}</td>
+        <td>{{ claim.reason }}</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-warning text-dark': claim.status === 'PENDING',
+            'badge bg-success': claim.status === 'APPROVED',
+            'badge bg-danger': claim.status === 'REJECTED'
+          }">
+            {{ claim.status }}
+          </span>
+        </td>
+        <td>{{ claim.claimDate }}</td>
+
+        <td>
+          <a *ngIf="claim.proofDocumentPath"
+             [href]="'http://localhost:9999/api/claims/download/' + claim.id"
+             target="_blank"
+             class="btn btn-outline-primary btn-sm">
+            Download
+          </a>
+          <span *ngIf="!claim.proofDocumentPath" class="text-muted">No document</span>
+        </td>
+
+        <td>
+          <ng-container *ngIf="claim.status === 'PENDING'; else statusBadge">
+            <button class="btn btn-success btn-sm me-2" (click)="updateClaimStatus(claim, 'APPROVED')">Approve</button>
+            <button class="btn btn-danger btn-sm" (click)="updateClaimStatus(claim, 'REJECTED')">Reject</button>
+          </ng-container>
+
+          <ng-template #statusBadge>
+            <span class="badge"
+                  [ngClass]="{
+                    'bg-success': claim.status === 'APPROVED',
+                    'bg-danger': claim.status === 'REJECTED'
+                  }">
+              {{ claim.status }}
+            </span>
+          </ng-template>
+        </td>
+      </tr>
+
+      <tr *ngIf="claims.length === 0">
+        <td colspan="6" class="text-center text-muted">No pending claims found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

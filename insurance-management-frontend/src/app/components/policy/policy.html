@@ -1,0 +1,43 @@
+<div class="container py-5">
+  <h3 class="mb-4 text-center">Your Insurance Policies</h3>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Table shown only if policies exist -->
+  <table class="table table-hover table-striped" *ngIf="policies.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Policy ID</th>
+        <th>Issued Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let policy of policies; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ policy.id }}</td>
+        <td>{{ policy.issuedDate }}</td>
+        <td>₹{{ policy.payment.amount }}</td>
+        <td>
+          <span class="badge bg-success">Active</span> <!-- Hardcoded as Active -->
+        </td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="downloadPolicy(policy.id)">
+            Download PDF
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No policies -->
+  <div *ngIf="policies.length === 0 && !errorMessage" class="text-center py-3">
+    No policies found.
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<!-- Toggle Button (Hamburger Icon) -->
+<button class="btn toggle-btn d-md-none" (click)="toggleSidebar()">
+  <img src="assets/hamburger.png" alt="Menu" width="32" height="32" />
+</button>
+<div class="d-flex">
+  <!-- Sidebar -->
+  <nav class="bg-white text-dark p-3 vh-100 shadow-sm border-end" style="width: 240px;">
+    <h4 class="mb-4 text-center border-bottom pb-2">Insurance System</h4>
+    <ul class="nav flex-column">
+
+      <!-- Normal User Menu -->
+      <ng-container *ngIf="!isOfficer()">
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/user-dashboard">
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/proposal-status">
+            Proposal Status
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/proposal">
+            Create Proposal
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/policy">
+            Policy Status
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/claim">
+            Claim
+          </a>
+        </li>
+      </ng-container>
+
+      <!-- Officer Menu -->
+      <ng-container *ngIf="isOfficer()">
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/officer-home">
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/officer-dashboard">
+            Verify Proposals
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/manage-claims">
+            Manage Claims
+          </a>
+        </li>
+         <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/add-policies">
+            Add Policies
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a class="nav-link text-dark hover-bg" routerLink="/all-policies">
+            All Policies
+          </a>
+        </li>
+      </ng-container>
+
+      <!-- Logout -->
+      <li class="nav-item mt-4">
+        <button class="btn btn-outline-secondary w-100" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Content -->
+  <div class="flex-grow-1 p-4">
+    <!-- Router outlet or content goes here -->
+  </div>
+</div>

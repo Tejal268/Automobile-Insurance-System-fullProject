@@ -1,0 +1,1 @@
+you have check a login functionlity which is not wotking properly as well as when i click on the registration it should be register but still not woking can you check

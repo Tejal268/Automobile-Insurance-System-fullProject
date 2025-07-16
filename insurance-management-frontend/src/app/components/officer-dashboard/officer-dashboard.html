@@ -1,0 +1,76 @@
+<h2 class="mb-4 text-center">Officer Dashboard - Proposals</h2>
+
+<!-- Success and Error Messages -->
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+<div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+<!-- Proposals Table -->
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white text-center">
+      <h5 class="mb-0">Proposals List</h5>
+    </div>
+
+    <div class="card-body p-3">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>Proposal ID</th>
+              <th>Vehicle Type</th>
+              <th>Vehicle Number</th>
+              <th>Registration Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let proposal of proposals">
+              <td>{{ proposal.id }}</td>
+              <td>{{ proposal.vehicleType }}</td>
+              <td>{{ proposal.vehicleNumber }}</td>
+              <td>{{ proposal.registrationDate }}</td>
+              <td>
+                <span class="badge"
+                  [ngClass]="{
+                    'bg-primary': proposal.status === 'SUBMITTED',
+                    'bg-warning text-dark': proposal.status === 'PENDING' || proposal.status === 'ADDITIONAL_INFO_REQUESTED',
+                    'bg-info text-dark': proposal.status === 'QUOTE_GENERATED',
+                    'bg-success': proposal.status === 'APPROVED' || proposal.status === 'PAID',
+                    'bg-secondary': proposal.status === 'EXPIRED',
+                    'bg-danger': proposal.status === 'REJECTED',
+                    'bg-orange text-dark': proposal.status === 'PENDING_DOCUMENTS'
+                  }">
+                  {{ proposal.status }}
+                </span>
+              </td>
+              <td>
+                <button *ngIf="proposal.status === 'SUBMITTED' || proposal.status === 'PENDING'"
+                        (click)="approve(proposal.id!)"
+                        class="btn btn-success btn-sm me-1">Approve</button>
+
+                <button *ngIf="proposal.status === 'SUBMITTED' || proposal.status === 'PENDING'"
+                        (click)="reject(proposal.id!)"
+                        class="btn btn-danger btn-sm me-1">Reject</button>
+
+                <button *ngIf="proposal.status === 'APPROVED'"
+                        [disabled]="isQuoteGenerated(proposal.id!)"
+                        (click)="generateQuote(proposal.id!)"
+                        class="btn btn-info btn-sm me-1">Generate Quote</button>
+
+                <button *ngIf="proposal.paymentId"
+                        (click)="generatePolicy(proposal.paymentId!)"
+                        class="btn btn-success btn-sm me-1">Generate Policy</button>
+              </td>
+            </tr>
+
+            <tr *ngIf="proposals.length === 0">
+              <td colspan="6" class="text-center py-3">No proposals found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

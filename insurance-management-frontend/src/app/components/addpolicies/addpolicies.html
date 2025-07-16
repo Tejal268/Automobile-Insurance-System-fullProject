@@ -1,0 +1,23 @@
+<div class="card shadow p-4 rounded">
+  <h4 class="text-primary mb-3">Generate Policy by Payment ID</h4>
+  <form [formGroup]="policyForm" (ngSubmit)="submitPolicy()" enctype="multipart/form-data">
+
+    <div class="mb-3">
+      <label class="form-label">Payment ID</label>
+      <input type="number" class="form-control" formControlName="paymentId" placeholder="Enter Payment ID">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Policy Document</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)">
+    </div>
+
+    <button type="submit" class="btn btn-success w-100" [disabled]="policyForm.invalid">
+      Generate Policy
+    </button>
+
+    <div *ngIf="message" class="alert mt-3" [ngClass]="{ 'alert-success': success, 'alert-danger': !success }">
+      {{ message }}
+    </div>
+  </form>
+</div>

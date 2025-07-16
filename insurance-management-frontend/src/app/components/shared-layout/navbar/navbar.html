@@ -1,0 +1,40 @@
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4 py-2 shadow">
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
+      <img src="https://images.icon-icons.com/235/PNG/256/Car_Left_Red_26351.png" alt="Logo" width="30" height="30" class="me-2">
+      Automobile Insurance System
+    </a>
+
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li *ngIf="isLoggedIn() && getRole() === 'OFFICER'" class="nav-item">
+          <a class="nav-link" routerLink="/officer-dashboard">
+            <i class="bi bi-person-badge"></i> Officer Dashboard
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <li *ngIf="!isLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/login">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </a>
+        </li>
+        <li *ngIf="!isLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/register">
+            <i class="bi bi-person-plus me-1"></i> Register
+          </a>
+        </li>
+
+
+        <!-- User Avatar Dropdown -->
+        <li *ngIf="isLoggedIn()" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center" style="width: 32px; height: 32px;">
+              {{ getUserInitial() }}
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>

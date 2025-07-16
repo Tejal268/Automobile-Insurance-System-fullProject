@@ -1,0 +1,13 @@
+.officer-home-bg {
+  min-height: 100vh;
+  width: 100vw;
+  /* background removed */
+  position: fixed;
+  top: 0; left: 0;
+  z-index: -1;
+}
+
+.officer-home-hero h1, .officer-home-hero p, .officer-home-hero .badge {
+  color: #222 !important;
+  text-shadow: none;
+}

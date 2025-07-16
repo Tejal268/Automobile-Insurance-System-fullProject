@@ -1,0 +1,128 @@
+
+
+.login-background {
+  background-image: url('https://fciains.com/wp-content/uploads/2021/01/commercial-hired-and-non-owned-auto-coverage_orig.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure no white borders on body and html */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+
+
+
+.info-section p {
+  font-size: 14px;
+  color: #444;
+}
+
+/* Enhanced Form Highlight Style */
+.form-highlight {
+  box-shadow: 0 10px 50px rgba(79, 140, 255, 0.15);
+  transition: all 0.3s ease;
+  border: 4px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #4f8cff 0%, #6ee7b7 100%) border-box;
+}
+
+.form-highlight:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 60px rgba(79, 140, 255, 0.25);
+}
+
+/* Attractive Glass Card Style */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Enhancements */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 140, 255, 0.3);
+}
+
+/* Input Field Enhancements */
+.form-control {
+  transition: all 0.3s ease;
+  border: 2px solid #e9ecef;
+}
+
+.form-control:focus {
+  border-color: #4f8cff;
+  box-shadow: 0 0 0 0.2rem rgba(79, 140, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Card Enhancements for Info Section */
+.info-section .card {
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 15px;
+}
+
+.info-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-highlight {
+    margin: 1rem;
+    width: 100vw !important;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+    top: 40px;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Footer Enhancement */
+footer {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.fullscreen-content {
+  flex: 1 1 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

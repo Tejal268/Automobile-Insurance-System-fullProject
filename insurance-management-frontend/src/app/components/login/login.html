@@ -1,0 +1,131 @@
+<div class="login-background  d-flex flex-column justify-content-between">
+  
+  <!-- Attractive Title -->
+  <div class="text-center py-2">
+    <h1 class="display-4 fw-bold text-white mb-0" style="
+      background: linear-gradient(135deg, #ffffff 0%, #e0f7fa 50%, #4f8cff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      letter-spacing: 2px;
+      font-size: 3.5rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    ">Automobile Insurance System</h1>
+    <p class="text-white-50 mt-1 mb-0" style="font-size: 1.2rem; letter-spacing: 1px;">Secure • Reliable • Trusted</p>
+  </div>
+
+  <!-- Centered Login Card -->
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card form-highlight p-0 shadow-lg border-0 overflow-hidden"
+      style="width: 700px; max-width: 95vw; border-radius: 2rem; background-color: rgba(255,255,255,0.96); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18); min-height: 550px;">
+      <div class="row g-0 align-items-stretch" style="min-height: 550px;">
+        
+        <!-- Left: Login Form -->
+        <div class="col-md-6 d-flex align-items-center" style="padding: 2.5rem 2rem 2.5rem 3rem;">
+          <form [formGroup]="userForm" (ngSubmit)="login()" class="w-100">
+            <h2 class="text-center mb-4 fw-bold text-primary" style="letter-spacing: 1px;">Login</h2>
+
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="username" class="form-label">Email</label>
+              <input type="email" id="username" class="form-control form-control-lg rounded-pill"
+                formControlName="username" placeholder="Enter your email" />
+              <div *ngIf="userForm.controls['username'].touched && userForm.controls['username'].invalid" class="text-danger mt-1">
+                <div *ngIf="userForm.controls['username'].errors?.['required']">Email is required</div>
+                <div *ngIf="userForm.controls['username'].errors?.['email']">Enter a valid email</div>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" id="password" class="form-control form-control-lg rounded-pill"
+                formControlName="password" placeholder="Enter your password" />
+              <div *ngIf="userForm.controls['password'].touched && userForm.controls['password'].invalid" class="text-danger mt-1">
+                <div *ngIf="userForm.controls['password'].errors?.['required']">Password is required</div>
+                <div *ngIf="userForm.controls['password'].errors?.['minlength']">Password must be at least 4 characters</div>
+              </div>
+            </div>
+
+            <!-- Remember Me + Forgot Password -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <a class="small text-decoration-underline" (click)="goToForgotPassword()">Forgot password?</a>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="errorMessage" class="alert alert-danger py-1 text-center">
+              {{ errorMessage }}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+              class="btn w-100 py-2 mb-4 rounded-pill fw-semibold"
+              [disabled]="userForm.invalid"
+              style="background: linear-gradient(90deg, #4f8cff 0%, #6ee7b7 100%); color: #fff; font-size: 1.2rem; border: none;">
+              Login
+            </button>
+
+            <!-- Register Links -->
+            <div class="mt-3 text-center">
+              <span>Don't have an account?</span>
+              <button class="btn btn-link text-decoration-none p-0 fw-semibold" (click)="goToRegister()">as a User</button>
+            </div>
+            <div class="mt-2 text-center">
+              <span>Or</span>
+              <button class="btn btn-link text-decoration-none p-0 fw-semibold" (click)="goToOfficerRegister()">as an Officer</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Divider -->
+        <div class="col-auto d-none d-md-flex align-items-center"
+          style="width: 1px; background: linear-gradient(180deg, #e0e7ef 0%, #c7d2fe 100%); margin: 2.5rem 0;"></div>
+
+        <!-- Right Panel -->
+        <div class="col-md-5 d-none d-md-flex align-items-center justify-content-center position-relative"
+          style="background: linear-gradient(135deg, #e0f7fa 0%, #f3e8ff 100%); padding: 2.5rem 3rem 2.5rem 2rem;">
+          <div class="text-center w-100">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Login Illustration"
+              style="max-width: 150px; margin-bottom: 1.5rem; filter: drop-shadow(0 4px 16px rgba(79,140,255,0.15)); border: none;">
+            <h4 class="fw-bold mb-2 text-primary">Welcome Back!</h4>
+            <p class="mb-0" style="font-size: 1.1rem; color: #555;">Log in to access your insurance dashboard, manage your policies, and more.</p>
+          </div>
+          <span style="position: absolute; bottom: 24px; right: 24px; opacity: 0.12; font-size: 5rem; color: #4f8cff;">
+            <i class="bi bi-shield-lock"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Section -->
+  <div class="info-section py-5" style="background: #f8fafc; border-top: 1px solid #e0e0e0;">
+    <div class="container">
+      <h2 class="mb-3 fw-bold text-primary">What is Car Insurance?</h2>
+      <p class="lead" style="font-size: 1.1rem; color: #333;">
+        Car insurance is a protective cover that helps vehicle owners manage expenses arising from accidents, theft, fire, or natural disasters. In India, having at least third-party car insurance is mandatory by law. It covers damage or injury caused to other people or their property. Insurance companies like Bajaj Allianz offer various plans such as third-party, own-damage, and comprehensive policies. A comprehensive policy provides wider coverage, including both personal vehicle damage and third-party liabilities. It can also include add-ons like zero depreciation, engine protection, and 24x7 roadside assistance for enhanced protection and peace of mind.
+      </p>
+
+      <h3 class="mt-5 mb-3 fw-semibold text-secondary">Why Should You Buy A Car Insurance Policy?</h3>
+      <ul class="list-group list-group-flush mb-0" style="font-size: 1.05rem;">
+       <ul class="list-group list-group-flush mb-0" style="font-size: 1.05rem;">
+  <li class="list-group-item bg-transparent border-0 ps-0"><strong>Protects Your Vehicle:</strong> Covers repair or replacement costs due to accidents, theft, or damage.</li>
+  <li class="list-group-item bg-transparent border-0 ps-0"><strong>Easy Online Management:</strong> Users and officers can manage policies, payments, and approvals online.</li>
+  <li class="list-group-item bg-transparent border-0 ps-0"><strong>Instant Policy Generation:</strong> Generate and download policy documents quickly after payment.</li>
+  <li class="list-group-item bg-transparent border-0 ps-0"><strong>Secure Login System:</strong> Separate portals for users and officers with role-based access.</li>
+</ul>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-white py-3" style="background-color: rgba(0, 0, 0, 0.7);">
+    © 2025 Automobile Insurance System. All rights reserved.
+  </footer>
+</div>

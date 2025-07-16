@@ -1,0 +1,39 @@
+<!-- Proposal ID Input (Visible when no quote yet) -->
+<div class="mb-4" *ngIf="!quote && !errorMessage">
+  
+  <input class="form-control" [(ngModel)]="proposalId" type="number" placeholder="Enter Proposal ID">
+  <button class="btn btn-primary mt-2" (click)="getQuote()">Fetch Quote</button>
+</div>
+
+<!-- Info message if no quote fetched yet -->
+<div *ngIf="errorMessage" class="alert alert-warning mt-3">
+   {{ errorMessage || 'No quote available for this proposal. Please wait for the officer to generate a quote.' }}
+</div>
+
+<!-- Quote Details and Payment Section -->
+<div *ngIf="quote" class="border rounded p-4 bg-light">
+  <h4>Quote Details</h4>
+  <p><strong>Proposal ID:</strong> {{ proposalId }}</p>
+  <p><strong>Amount:</strong> ₹{{ quote.amount }}</p>
+  <p><strong>Expiry:</strong> {{ quote.expiryDate }}</p>
+
+  <div class="mb-3">
+    <label class="form-label">Select Payment Mode:</label>
+    <select class="form-control" [(ngModel)]="paymentMode">
+      <option value="UPI">UPI</option>
+      <option value="CARD">Card</option>
+      <option value="NET_BANKING">Net Banking</option>
+    </select>
+  </div>
+
+  
+
+  <button class="btn btn-success fw-bold" (click)="makePayment()">
+    Pay Now
+  </button>
+</div>
+
+
+<!-- Success & Error Messages -->
+<div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+<div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>

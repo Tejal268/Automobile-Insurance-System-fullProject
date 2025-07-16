@@ -1,0 +1,32 @@
+<div class="dashboard-container px-4 py-3">
+  <h2 class="text-center mb-4"> Insurance Dashboard</h2>
+
+  <!-- Summary Cards -->
+  <div class="row text-center mb-4">
+    <div class="col-md-4 mb-3">
+      <div class="card bg-primary text-white shadow-sm">
+        <div class="card-body">
+          <h5>Total Proposals</h5>
+          <h2>{{ totalProposals }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card bg-success text-white shadow-sm">
+        <div class="card-body">
+          <h5>Active Policies</h5>
+          <h2>{{ totalPolicies }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card bg-warning text-dark shadow-sm">
+        <div class="card-body">
+          <h5>Claims </h5>
+          <h2>{{ totalClaims }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
