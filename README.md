@@ -20,4 +20,4 @@ This project is a web-based **Automobile Insurance Management System** that allo
 
 - 📘 [Project Report](https://docs.google.com/document/d/168HJ0k6mT6Fboz4V6zsGLW8S9M02eDVy/edit?usp=sharing&ouid=117896069227246961666&rtpof=true&sd=true)
 - 📊 [Project Presentation (PPT)](https://docs.google.com/presentation/d/1_XbYqF2aEOXxsI93RFYzz34Mf7jS4eC_/edit?usp=sharing&ouid=117896069227246961666&rtpof=true&sd=true)
-- 🎥 [Demo Video](https://drive.google.com/file/d/1XYbdXuXaGx4J2IFEEtu0OfrEj2uknrJn/view?usp=sharing)
+- 🎥 [Demo Video](https://drive.google.com/file/d/1VFiB7Fw66wPurFWfcgflQBWrgNcL3oGw/view?usp=sharing)
